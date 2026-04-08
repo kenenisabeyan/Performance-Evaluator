@@ -6,7 +6,22 @@ export default withAuth(
     const { pathname } = req.nextUrl;
     const { token } = req.nextauth;
 
-    // Redirect to login if no token
+    // Handle API routes first
+    if (pathname.startsWith('/api')) {
+      // Allow auth routes
+      if (pathname.startsWith('/api/auth')) {
+        return NextResponse.next();
+      }
+      
+      // Protect other API routes
+      if (!token) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      }
+      
+      return NextResponse.next();
+    }
+
+    // Redirect to login if no token for non-API routes
     if (!token) {
       return NextResponse.redirect(new URL('/auth/login', req.url));
     }
@@ -31,28 +46,14 @@ export default withAuth(
       return NextResponse.next();
     }
 
-    // API routes protection
-    if (pathname.startsWith('/api')) {
-      // Allow auth routes
-      if (pathname.startsWith('/api/auth')) {
-        return NextResponse.next();
-      }
-      
-      // Protect other API routes
-      if (!token) {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-      }
-    }
-
     return NextResponse.next();
   },
   {
     callbacks: {
-      authorized: ({ req, token }) => {
-        if (req.nextUrl.pathname.startsWith('/api/auth')) {
-          return true;
-        }
-        return !!token;
+      authorized: () => {
+        // Always return true to let the middleware handle unauthorized requests.
+        // Otherwise next-auth defaults to redirecting all unauthorized API requests to the signin page, resulting in HTML responses.
+        return true;
       },
     },
   }
