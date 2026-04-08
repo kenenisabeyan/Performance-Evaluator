@@ -17,7 +17,7 @@ export default function AdminstractureNavBar() {
   ]
 
   return (
-    <Card className='w-full bg-[#8D92EB] text-white shadow-md rounded-none px-6 py-4 top-0 z-50 relative'>
+    <Card className='w-full bg-[#8D92EB] text-white shadow-md rounded-none px-2 py-1 top-0 z-50 relative'>
       <nav className='flex items-center justify-between px-4 py-1 ml-14 mr-14'>
        
         <div className="flex items-center gap-2">
@@ -29,7 +29,7 @@ export default function AdminstractureNavBar() {
             alt='ASTU'
             sizes="50px"
           />
-          <span className='text-xl font-semibold'>ADMINISTERATUR</span>
+          <span className='text-xl font-semibold'>Admin</span>
         </div>
 
        
