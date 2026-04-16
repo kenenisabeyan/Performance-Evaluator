@@ -12,26 +12,35 @@ export default function Home() {
       </div>
 
       {/* Navigation */}
-      <nav className="border-b border-white/5 backdrop-blur-xl bg-black/10 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <nav className="border-b border-white/5 backdrop-blur-xl bg-black/20 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-500 via-indigo-500 to-violet-600 flex items-center justify-center shadow-[0_20px_80px_rgba(56,189,248,0.18)]">
               <Activity className="w-5 h-5 text-white" />
             </div>
-            <span className="font-bold text-xl tracking-tight text-white">
-              PerformCore
-            </span>
+            <div>
+              <p className="font-semibold text-white text-lg">PerformCore</p>
+              <p className="text-xs uppercase tracking-[0.25em] text-slate-400">Performance made simple</p>
+            </div>
           </div>
-          <div className="flex items-center gap-4">
-            <Link 
-              href="/auth/login" 
-              className="px-5 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+            <Link href="#features" className="hover:text-white transition-colors">Features</Link>
+            <Link href="#overview" className="hover:text-white transition-colors">Overview</Link>
+            <Link href="/report" className="hover:text-white transition-colors">Reports</Link>
+            <Link href="/employee/profile" className="hover:text-white transition-colors">Profile</Link>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Link
+              href="/auth/login"
+              className="px-4 py-2 text-sm font-medium text-slate-200 hover:text-white transition-colors"
             >
               Sign In
             </Link>
-            <Link 
-              href="/auth/login" 
-              className="px-5 py-2 text-sm font-medium bg-white text-black rounded-lg hover:bg-slate-100 transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+            <Link
+              href="/auth/login"
+              className="hidden sm:inline-flex items-center px-5 py-2 text-sm font-semibold bg-gradient-to-r from-sky-500 to-indigo-500 text-white rounded-full shadow-[0_20px_60px_rgba(56,189,248,0.24)] transition-transform duration-300 hover:-translate-y-0.5"
             >
               Get Started
             </Link>
@@ -89,6 +98,30 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        <section id="overview" className="mt-20 rounded-[2rem] border border-white/10 bg-slate-950/75 p-10 shadow-[0_30px_80px_rgba(15,23,42,0.4)] backdrop-blur-xl">
+          <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] items-center">
+            <div className="space-y-6">
+              <span className="inline-flex items-center rounded-full bg-sky-500/10 px-4 py-2 text-sm font-semibold text-sky-300">Why PerformCore</span>
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white">A smarter way to manage performance and keep every team aligned.</h2>
+              <p className="max-w-xl text-slate-400 leading-relaxed">From self-review flows to peer feedback and executive dashboards, PerformCore makes every evaluation easy to complete and simple to understand.</p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                { title: 'High visibility', desc: 'Real-time progress for goals, reviews, and feedback in one place.' },
+                { title: 'Clear scoring', desc: 'Intuitive evaluation metrics that every user can follow with confidence.' },
+                { title: 'Flexible workflows', desc: 'Support for self, peer, and manager reviews without friction.' },
+                { title: 'Instant insights', desc: 'Actionable summaries and export-ready data for faster decisions.' }
+              ].map((item) => (
+                <div key={item.title} className="rounded-3xl bg-slate-900/80 border border-white/10 p-6">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400 mb-3">{item.title}</p>
+                  <p className="text-base text-slate-300 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Feature Highlights Grid */}
         <div id="features" className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-32 text-left animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
