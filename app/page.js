@@ -42,18 +42,12 @@ export default function Home() {
       {/* Hero Section */}
       <main className="max-w-7xl mx-auto px-6 pt-32 pb-24 text-center">
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-sm text-indigo-300 font-medium mb-8 backdrop-blur-sm">
-            <span className="flex h-2 w-2 rounded-full bg-indigo-500 animate-pulse"></span>
-            Performance Management Reimagined
-          </div>
-          
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-[1.15]">
             Elevate Your Team&apos;s <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-violet-400 to-blue-400">
               True Potential
             </span>
-          </h1>
-          
+          </h1
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
             The intelligent platform for goal tracking, 360° evaluations, and actionable analytics. 
             Empower your workforce with continuous, data-driven feedback.
@@ -64,14 +58,14 @@ export default function Home() {
               href="/auth/login" 
               className="group w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-medium transition-all shadow-[0_0_30px_rgba(79,70,229,0.25)] hover:shadow-[0_0_40px_rgba(79,70,229,0.4)] flex items-center justify-center gap-2"
             >
-              Access Dashboard
+              Get started
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <a 
               href="#features" 
               className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl font-medium transition-all backdrop-blur-sm"
             >
-              Explore Features
+              Learn more
             </a>
           </div>
         </div>
