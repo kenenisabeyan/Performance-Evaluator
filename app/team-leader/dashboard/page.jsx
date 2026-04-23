@@ -1,7 +1,8 @@
 'use client';
+
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Card } from '@/components/ui/card';
+import { Search } from 'lucide-react';
 
 export default function Page() {
   const router = useRouter();
@@ -9,87 +10,96 @@ export default function Page() {
   const handleTaskChange = (e) => {
     const value = e.target.value;
     if (value === '70') {
-      router.push('leader-taskform1'); 
+      router.push('/team-leader/leader-taskform1'); 
     } else if (value === '10') {
-      router.push('leader-taskform2'); 
+      router.push('/team-leader/leader-taskform2'); 
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-white to-indigo-100">
-      <main className="flex-1 p-4 sm:p-8 space-y-10 mb-32">
-        
+    <div className="w-full max-w-5xl mx-auto space-y-12 pb-20">
       
-        <div className="max-w-2xl mx-auto">
+      {/* Search Bar */}
+      <div className="flex justify-center mt-4">
+        <div className="relative w-full max-w-xl">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <Search className="h-5 w-5 text-sky-500" />
+          </div>
           <input
             type="text"
-            placeholder="🔍 Search tasks..."
-            className="w-full p-4 rounded-xl border border-gray-200 shadow-sm bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition hover:shadow-md"
+            placeholder="Search tasks..."
+            className="w-full py-3.5 pl-12 pr-4 bg-white border border-gray-100 rounded-xl shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-[#8D92EB]/50 transition-all text-gray-700 placeholder-gray-400"
           />
         </div>
+      </div>
 
-       
-        <div className="flex flex-wrap justify-center gap-3 bg-white shadow-lg p-4 rounded-xl max-w-4xl mx-auto border border-gray-100 hover:shadow-xl transition-shadow">
-          {[
-            { name: 'Overview', link: 'overview' },
-            { name: 'Board', link: 'board' },
-            { name: 'Calendar', link: 'calendar' },
-          ].map((tab) => (
-            <Link
-              key={tab.name}
-              href={tab.link}
-              className="text-sm font-semibold text-gray-700 px-5 py-2 rounded-xl hover:bg-indigo-100 hover:text-indigo-600 transition-all shadow-sm"
-            >
-              {tab.name}
-            </Link>
-          ))}
+      {/* Navigation Tabs */}
+      <div className="flex justify-center">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-1.5 flex gap-2 w-full max-w-xl justify-between px-8 py-3">
+          <Link href="/team-leader/overview" className="text-xs font-semibold text-gray-700 hover:text-black transition-colors">
+            Overview
+          </Link>
+          <Link href="/team-leader/board" className="text-xs font-semibold text-gray-700 hover:text-black transition-colors">
+            Board
+          </Link>
+          <Link href="/team-leader/calendar" className="text-xs font-semibold text-gray-700 hover:text-black transition-colors">
+            Calendar
+          </Link>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          
+      {/* Main Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         
-          <Card className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 p-6">
-            <h1 className="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-200 pb-2">
-              Team Leader Tasks Evaluation
-            </h1>
-            <form className="w-full">
+        {/* Team Leader Tasks Evaluation Card */}
+        <div className="bg-white rounded-[1.25rem] shadow-sm border border-gray-50 p-8 h-full flex flex-col">
+          <h2 className="text-[1.35rem] font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">
+            Team Leader Tasks Evaluation
+          </h2>
+          
+          <div className="mt-2">
+            <div className="relative">
               <select
                 defaultValue=""
                 onChange={handleTaskChange}
-                className="w-full p-3 border border-gray-300 rounded-lg bg-white shadow-sm focus:outline-none focus:ring-2 focus:bg-[#8D92EB] hover:border-[#8D92EB] transition"
+                className="w-full appearance-none bg-white border border-gray-200 rounded-lg py-3 px-4 pr-10 text-sm text-gray-600 focus:outline-none focus:border-[#8D92EB] focus:ring-1 focus:ring-[#8D92EB] transition-colors"
               >
-                <option value="" disabled>
-                  Select Task type
-                </option>
+                <option value="" disabled>Select Task type</option>
                 <option value="70">Task out of 70%</option>
                 <option value="10">Task out of 10%</option>
               </select>
-            </form>
-          </Card>
-
-        
-          <Card className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 p-6">
-            <h1 className="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-200 pb-2">
-              Employee Tasks
-            </h1>
-            <div className="flex flex-col gap-4">
-              <Link
-                href="/team-leader/peer-evaluation"
-                className="bg-[#8D92EB] rounded-xl text-white font-semibold text-center px-4 py-3 shadow-md hover:from-indigo-600 hover:to-indigo-700 transition-all"
-              >
-                + Create Peer Tasks
-              </Link>
-              <Link
-                href="/team-leader/self-evaluationform"
-                className="bg-[#8D92EB] rounded-xl text-white font-semibold text-center px-4 py-3 shadow-md hover:from-indigo-600 hover:to-indigo-700 transition-all"
-              >
-                + Create Self-Evaluation Tasks
-              </Link>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                </svg>
+              </div>
             </div>
-          </Card>
-
+          </div>
         </div>
-      </main>
+
+        {/* Employee Tasks Card */}
+        <div className="bg-white rounded-[1.25rem] shadow-sm border border-gray-50 p-8 h-full flex flex-col">
+          <h2 className="text-[1.35rem] font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">
+            Employee Tasks
+          </h2>
+          
+          <div className="flex flex-col gap-4 mt-2">
+            <Link
+              href="/team-leader/peer-evaluation"
+              className="bg-[#8D92EB] hover:bg-[#7a7fd8] text-white text-sm font-semibold py-3 px-6 rounded-lg text-center transition-colors w-full"
+            >
+              + Create Peer Tasks
+            </Link>
+            <Link
+              href="/team-leader/self-evaluationform"
+              className="bg-[#8D92EB] hover:bg-[#7a7fd8] text-white text-sm font-semibold py-3 px-6 rounded-lg text-center transition-colors w-full"
+            >
+              + Create Self-Evaluation Tasks
+            </Link>
+          </div>
+        </div>
+
+      </div>
     </div>
   );
 }
