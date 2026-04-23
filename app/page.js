@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, BarChart2, Users, Target, ShieldCheck } from 'lucide-react';
+import Footer from './employee/footer/Footer';
 
 export default function Home() {
   return (
@@ -169,6 +170,8 @@ export default function Home() {
         {/* Decorative Bottom Glow */}
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent"></div>
       </main>
+
+      <Footer />
     </div>
   );
 }
