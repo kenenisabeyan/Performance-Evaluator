@@ -45,7 +45,7 @@ A full-stack performance management system built with **Next.js 15+ App Router**
 
 ### 1. Clone the Repo
 ```bash
-git clone https://github.com/kenenisabeyan/employee-evaluation-dashboard.git
+git clone https://github.com/kenenisabeyan/Performance-Evaluator.git
 cd employee-evaluation-dashboard
 ```
 ### 2. Install Dependencies
