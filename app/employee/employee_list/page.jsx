@@ -1,7 +1,6 @@
 'use client'
 
 import { Card } from '@/components/ui/card'
-import AdminstractureNavBar from '../shared/admisteratur-navbar/NavbarAdmin'
 import React, { useEffect, useState } from 'react'
 
 export default function EmployeeList() {
@@ -81,140 +80,131 @@ export default function EmployeeList() {
     }
   };
 
-  if (loading) return <p className="text-center mt-10 animate-pulse">Loading employees...</p>
-  if (error) return <p className="text-center text-red-500 mt-10">{error}</p>
+  if (loading) return <p className="text-center mt-10 animate-pulse text-indigo-600 font-medium">Loading employees...</p>
+  if (error) return <p className="text-center text-red-500 mt-10 font-medium">{error}</p>
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50 via-white to-indigo-100">
-    
-      <div className="w-full relative shadow-md">
-        <AdminstractureNavBar />
-      </div>
-
-   
-      <div className="text-center mt-24 mb-8">
-        <h1 className="text-4xl font-extrabold text-indigo-800 drop-shadow-md">
-          👥 Employee List
+    <div className="w-full max-w-7xl mx-auto space-y-6">
+      <div className="mb-8">
+        <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">
+          Employee List
         </h1>
-        <p className="text-indigo-400 mt-2 text-lg">
-          Manage, edit, or deactivate employees
+        <p className="text-gray-500 mt-2 text-sm font-medium">
+          Manage, edit, or deactivate employees across the organization.
         </p>
       </div>
 
-     
-      <div className="px-6 pb-12">
-        <Card className="p-6 shadow-2xl rounded-3xl bg-white border border-gray-200">
-          <div className="overflow-x-auto">
-            <table className="min-w-full border border-gray-200 rounded-lg overflow-hidden text-sm md:text-base">
-              <thead className="bg-indigo-100 text-indigo-800 uppercase text-xs md:text-sm">
-                <tr>
-                  <th className="px-4 py-3 font-semibold">Full Name</th>
-                  <th className="px-4 py-3 font-semibold">Department</th>
-                  <th className="px-4 py-3 font-semibold">Position</th>
-                  <th className="px-4 py-3 font-semibold">Email</th>
-                  <th className="px-4 py-3 font-semibold">Phone</th>
-                  <th className="px-4 py-3 font-semibold">Status</th>
-                  <th className="px-4 py-3 font-semibold">Actions</th>
+      <Card className="p-0 shadow-sm border border-gray-200 rounded-2xl overflow-hidden bg-white">
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-sm md:text-base">
+            <thead className="bg-gray-50 border-b border-gray-200 text-gray-500 uppercase text-xs tracking-wider">
+              <tr>
+                <th className="px-6 py-4 font-semibold text-left">Full Name</th>
+                <th className="px-6 py-4 font-semibold text-left">Department</th>
+                <th className="px-6 py-4 font-semibold text-left">Position</th>
+                <th className="px-6 py-4 font-semibold text-left">Email</th>
+                <th className="px-6 py-4 font-semibold text-left">Phone</th>
+                <th className="px-6 py-4 font-semibold text-center">Status</th>
+                <th className="px-6 py-4 font-semibold text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {employees.map((emp) => (
+                <tr key={emp._id || emp.id} className="hover:bg-gray-50 transition-colors">
+                  <td className="px-6 py-4">
+                    {editingId === (emp._id || emp.id) ? (
+                      <input
+                        type="text"
+                        name="fullName"
+                        value={editForm.fullName}
+                        onChange={handleEditChange}
+                        className="border px-3 py-1.5 rounded-lg w-full text-sm focus:ring-2 focus:ring-[#3b41c5] outline-none"
+                      />
+                    ) : (
+                      <span className="font-medium text-gray-900">{emp.fullName || `${emp.firstName} ${emp.lastName}`}</span>
+                    )}
+                  </td>
+                  <td className="px-6 py-4 text-gray-600">
+                    {editingId === (emp._id || emp.id) ? (
+                      <input
+                        type="text"
+                        name="department"
+                        value={editForm.department}
+                        onChange={handleEditChange}
+                        className="border px-3 py-1.5 rounded-lg w-full text-sm focus:ring-2 focus:ring-[#3b41c5] outline-none"
+                      />
+                    ) : (
+                      emp.department?.name || emp.department || 'N/A'
+                    )}
+                  </td>
+                  <td className="px-6 py-4 text-gray-600">
+                    {editingId === (emp._id || emp.id) ? (
+                      <input
+                        type="text"
+                        name="position"
+                        value={editForm.position}
+                        onChange={handleEditChange}
+                        className="border px-3 py-1.5 rounded-lg w-full text-sm focus:ring-2 focus:ring-[#3b41c5] outline-none"
+                      />
+                    ) : (
+                      emp.position || 'N/A'
+                    )}
+                  </td>
+                  <td className="px-6 py-4 text-[#3b41c5] font-medium hover:underline cursor-pointer">
+                    {emp.email}
+                  </td>
+                  <td className="px-6 py-4 text-gray-600">{emp.phone || 'N/A'}</td>
+                  <td className="px-6 py-4 text-center">
+                    <button
+                      className={`px-3 py-1 text-xs font-semibold rounded-full shadow-sm transition-colors ${
+                        emp.isActive
+                          ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                          : 'bg-red-100 text-red-600 hover:bg-red-200'
+                      }`}
+                      onClick={() => toggleStatus(emp._id || emp.id, emp.isActive ? 'Active' : 'Inactive')}
+                    >
+                      {emp.isActive ? 'Active' : 'Inactive'}
+                    </button>
+                  </td>
+                  <td className="px-6 py-4 flex justify-end gap-2">
+                    {editingId === (emp._id || emp.id) ? (
+                      <>
+                        <button
+                          onClick={() => submitEdit(emp._id || emp.id)}
+                          className="px-4 py-1.5 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition"
+                        >
+                          Save
+                        </button>
+                        <button
+                          onClick={() => setEditingId(null)}
+                          className="px-4 py-1.5 bg-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-300 transition"
+                        >
+                          Cancel
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          onClick={() => startEdit(emp)}
+                          className="px-4 py-1.5 bg-[#3b41c5]/10 text-[#3b41c5] text-sm font-medium rounded-lg hover:bg-[#3b41c5]/20 transition"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => deleteEmployee(emp._id || emp.id)}
+                          className="px-4 py-1.5 bg-red-50 text-red-600 text-sm font-medium rounded-lg hover:bg-red-100 transition"
+                        >
+                          Delete
+                        </button>
+                      </>
+                    )}
+                  </td>
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {employees.map((emp) => (
-                  <tr key={emp._id || emp.id} className="hover:bg-indigo-50 transition duration-300">
-                    <td className="px-4 py-3">
-                      {editingId === (emp._id || emp.id) ? (
-                        <input
-                          type="text"
-                          name="fullName"
-                          value={editForm.fullName}
-                          onChange={handleEditChange}
-                          className="border px-2 py-1 rounded w-full"
-                        />
-                      ) : (
-                        emp.fullName || `${emp.firstName} ${emp.lastName}`
-                      )}
-                    </td>
-                    <td className="px-4 py-3">
-                      {editingId === (emp._id || emp.id) ? (
-                        <input
-                          type="text"
-                          name="department"
-                          value={editForm.department}
-                          onChange={handleEditChange}
-                          className="border px-2 py-1 rounded w-full"
-                        />
-                      ) : (
-                        emp.department?.name || emp.department || 'N/A'
-                      )}
-                    </td>
-                    <td className="px-4 py-3">
-                      {editingId === (emp._id || emp.id) ? (
-                        <input
-                          type="text"
-                          name="position"
-                          value={editForm.position}
-                          onChange={handleEditChange}
-                          className="border px-2 py-1 rounded w-full"
-                        />
-                      ) : (
-                        emp.position || 'N/A'
-                      )}
-                    </td>
-                    <td className="px-4 py-3 text-blue-600 hover:underline cursor-pointer">
-                      {emp.email}
-                    </td>
-                    <td className="px-4 py-3">{emp.phone || 'N/A'}</td>
-                    <td className="px-4 py-3">
-                      <span
-                        className={`px-3 py-1 text-xs font-semibold rounded-full cursor-pointer shadow-sm ${
-                          emp.isActive
-                            ? 'bg-green-100 text-green-700'
-                            : 'bg-red-100 text-red-600'
-                        }`}
-                        onClick={() => toggleStatus(emp._id || emp.id, emp.isActive ? 'Active' : 'Inactive')}
-                      >
-                        {emp.isActive ? 'Active' : 'Inactive'}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 flex gap-2">
-                      {editingId === (emp._id || emp.id) ? (
-                        <>
-                          <button
-                            onClick={() => submitEdit(emp._id || emp.id)}
-                            className="px-3 py-1 bg-green-600 text-white rounded shadow hover:bg-green-700 transition"
-                          >
-                            Save
-                          </button>
-                          <button
-                            onClick={() => setEditingId(null)}
-                            className="px-3 py-1 bg-gray-300 text-gray-800 rounded shadow hover:bg-gray-400 transition"
-                          >
-                            Cancel
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          <button
-                            onClick={() => startEdit(emp)}
-                            className="px-3 py-1 bg-blue-600 text-white rounded shadow hover:bg-blue-700 transition"
-                          >
-                            Edit
-                          </button>
-                          <button
-                            onClick={() => deleteEmployee(emp._id || emp.id)}
-                            className="px-3 py-1 bg-red-600 text-white rounded shadow hover:bg-red-700 transition"
-                          >
-                            Delete
-                          </button>
-                        </>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Card>
-      </div>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
     </div>
   )
 }

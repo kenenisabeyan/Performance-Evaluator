@@ -126,28 +126,22 @@ export default function DepartmentManagement() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-100">
-        <AdminstractureNavBar />
-        <div className="flex justify-center items-center min-h-screen">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-indigo-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading departments...</p>
-          </div>
+      <div className="flex justify-center items-center min-h-[50vh]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600 font-medium">Loading departments...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <AdminstractureNavBar />
-      
-      <div className="container mx-auto px-6 py-8 mt-20">
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Department Management</h1>
-            <p className="text-gray-600 mt-2">Manage your organization's departments</p>
-          </div>
+    <div className="max-w-7xl mx-auto space-y-6">
+      <div className="flex justify-between items-center mb-8 border-b border-gray-200 pb-6">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Department Management</h1>
+          <p className="text-gray-500 mt-2 text-sm font-medium">Manage your organization's departments</p>
+        </div>
           
           <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
             <DialogTrigger asChild>
@@ -286,7 +280,6 @@ export default function DepartmentManagement() {
               </Table>
             )}
           </CardContent>
-        </Card>
       </div>
     </div>
   )

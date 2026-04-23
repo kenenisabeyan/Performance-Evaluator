@@ -88,10 +88,10 @@ export default function NewUserCreationForms() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 flex flex-col items-center justify-center px-6 py-10 font-sans">
-      <header className="w-full max-w-4xl mb-8 text-center">
-        <h1 className="text-3xl font-bold text-indigo-800 drop-shadow-sm">ASTU Employee Portal</h1>
-        <p className="text-gray-500 mt-2">Employee Registration Form</p>
+    <div className="max-w-4xl mx-auto space-y-6 py-10">
+      <header className="w-full text-center border-b border-gray-200 pb-6">
+        <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Employee Registration</h1>
+        <p className="text-gray-500 mt-2 text-sm font-medium">Create a new employee profile in the ASTU portal.</p>
       </header>
 
       <div className="w-full max-w-4xl flex items-center justify-between mb-6">
@@ -116,7 +116,7 @@ export default function NewUserCreationForms() {
 
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-4xl bg-white p-8 rounded-2xl shadow-lg border border-gray-200"
+        className="w-full bg-white p-8 rounded-2xl shadow-sm border border-gray-200"
         encType="multipart/form-data"
       >
         {step === 1 && (
