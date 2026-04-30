@@ -73,5 +73,53 @@ NEXTAUTH_SECRET=your_nextauth_secret
 NEXTAUTH_URL=http://localhost:3000
 ```
 ### 4. Run the Dev Server
-```
+```bash
 npm run dev
+```
+
+The application will be available at [http://localhost:3000](http://localhost:3000).
+
+---
+
+## 📂 Project Structure
+
+```text
+├── app/                  # Next.js 15 App Router pages & API routes
+│   ├── (auth)/           # Authentication pages (login/register)
+│   ├── admin/            # Admin dashboard & evaluation management
+│   ├── employee/         # Employee self & peer evaluation interfaces
+│   ├── team-leader/      # Team leader specific views
+│   └── api/              # API endpoints for evaluations & users
+├── components/           # Reusable UI components (Shadcn UI, Radix)
+├── lib/                  # Utility functions & database connection
+├── models/               # Mongoose schema definitions
+├── public/               # Static assets (images, icons)
+└── middleware.js         # NextAuth route protection & role verification
+```
+
+---
+
+## 🚢 Deployment
+
+This application is optimized for deployment on Vercel.
+
+1. Push your code to a GitHub repository.
+2. Import the project into [Vercel](https://vercel.com).
+3. Add the required **Environment Variables** (MongoDB URI, NextAuth Secret, NextAuth URL).
+4. Click **Deploy**.
+
+For deploying the database, **MongoDB Atlas** is recommended.
+
+---
+
+## 🌟 High-Level Problem Solving
+
+- **Complex Evaluation Workflows:** Engineered a multi-tier evaluation system supporting self, peer, and admin reviews seamlessly through unified Next.js API routes.
+- **Role-Based Access Control (RBAC):** Implemented strict middleware-level protection to ensure employees, team leaders, and admins only access authorized dashboard views and data endpoints.
+- **Dynamic State Management:** Leveraged React Server Components (RSC) along with client-side state hooks to provide a fast, responsive, and optimistic UI for form submissions.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

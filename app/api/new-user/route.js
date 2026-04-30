@@ -123,7 +123,7 @@ export async function POST(request) {
       phone: phone || '',
       address: `${country || ''} ${region || ''}`.trim(),
       employeeId: employeeId,
-      isActive: true,
+      isActive: false,
       permissions: permissions,
       department: resolvedDepartment?._id,
       // Additional fields can be stored in a separate collection or as metadata

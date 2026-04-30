@@ -4,68 +4,69 @@ import {
   CardHeader,
   CardTitle,
   CardContent,
-} from '@/components/ui/card'
-import Link from 'next/link'
-import React from 'react'
+} from '@/components/ui/card';
+import Link from 'next/link';
+import React from 'react';
 
-export default function Page() {
+export default function EmployeeDashboard() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 flex items-center justify-center px-4">
-      <main className="w-full max-w-7xl mb-30">
-        <h1 className="text-3xl md:text-4xl mt-0 font-bold text-center text-indigo-700 mb-10 bg-gray-200 py-4 rounded-lg">
+    <div className="max-w-6xl mx-auto space-y-8 py-8">
+      <header className="w-full text-center border-b border-gray-200 pb-6 mb-8">
+        <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">
           Evaluation Dashboard
         </h1>
+        <p className="text-gray-500 mt-2">Manage your tasks and review your performance evaluations.</p>
+      </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <Card className="group bg-white text-gray-800 rounded-2xl shadow-md hover:shadow-2xl hover:scale-105 transform transition-all duration-300 p-6 cursor-pointer">
-            <CardHeader>
-              <CardTitle className="text-lg md:text-xl font-semibold">
-                Self Evaluation Task
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Link 
-                href="self-evaluation-form" 
-                className="flex items-center justify-center gap-2 text-blue-600 font-medium group-hover:text-blue-800 transition"
-              >
-                <FaArrowRightToBracket className="text-xl" /> Self Evaluation
-              </Link>
-            </CardContent>
-          </Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Card className="group bg-white text-gray-800 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-indigo-100 transform transition-all duration-300 p-2">
+          <CardHeader>
+            <CardTitle className="text-lg md:text-xl font-semibold text-gray-800 text-center">
+              Self Evaluation Task
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Link 
+              href="/employee/self-evaluation-form" 
+              className="mt-4 flex items-center justify-center gap-2 text-indigo-600 font-medium group-hover:text-indigo-800 transition"
+            >
+              <FaArrowRightToBracket className="text-xl" /> Self Evaluation
+            </Link>
+          </CardContent>
+        </Card>
 
-          <Card className="group bg-white text-gray-800 rounded-2xl shadow-md hover:shadow-2xl hover:scale-105 transform transition-all duration-300 p-6 cursor-pointer">
-            <CardHeader>
-              <CardTitle className="text-lg md:text-xl font-semibold">
-                Peer Evaluation Task
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Link 
-                href="peer-evaluation" 
-                className="flex items-center justify-center gap-2 text-blue-600 font-medium group-hover:text-blue-800 transition"
-              >
-                <FaArrowRightToBracket className="text-xl" /> See the Peer Task
-              </Link>
-            </CardContent>
-          </Card>
+        <Card className="group bg-white text-gray-800 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-indigo-100 transform transition-all duration-300 p-2">
+          <CardHeader>
+            <CardTitle className="text-lg md:text-xl font-semibold text-gray-800 text-center">
+              Peer Evaluation Task
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Link 
+              href="/employee/peer-evaluation" 
+              className="mt-4 flex items-center justify-center gap-2 text-indigo-600 font-medium group-hover:text-indigo-800 transition"
+            >
+              <FaArrowRightToBracket className="text-xl" /> See the Peer Task
+            </Link>
+          </CardContent>
+        </Card>
 
-          <Card className="group bg-white text-gray-800 rounded-2xl shadow-md hover:shadow-2xl hover:scale-105 transform transition-all duration-300 p-6 cursor-pointer">
-            <CardHeader>
-              <CardTitle className="text-lg md:text-xl font-semibold">
-                My Result
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Link 
-                href="/employee/employee-result" 
-                className="flex items-center justify-center gap-2 text-blue-600 font-medium group-hover:text-blue-800 transition"
-              >
-                <FaArrowRightToBracket className="text-xl" /> See Your Result
-              </Link>
-            </CardContent>
-          </Card>
-        </div>
-      </main>
+        <Card className="group bg-white text-gray-800 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-indigo-100 transform transition-all duration-300 p-2">
+          <CardHeader>
+            <CardTitle className="text-lg md:text-xl font-semibold text-gray-800 text-center">
+              My Result
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Link 
+              href="/employee/employee-result" 
+              className="mt-4 flex items-center justify-center gap-2 text-indigo-600 font-medium group-hover:text-indigo-800 transition"
+            >
+              <FaArrowRightToBracket className="text-xl" /> See Your Result
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
     </div>
-  )
+  );
 }
